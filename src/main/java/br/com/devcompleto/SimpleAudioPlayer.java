@@ -23,7 +23,7 @@ public class SimpleAudioPlayer {
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.out.println("My Music");
-        filePath = "O Livro de Enoque_001.wav";
+        filePath = "Enoque_001.wav";
         SimpleAudioPlayer audioPlayer = new SimpleAudioPlayer();
 
         audioPlayer.play();
