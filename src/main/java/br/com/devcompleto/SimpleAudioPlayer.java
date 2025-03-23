@@ -119,7 +119,6 @@ public class SimpleAudioPlayer {
     }
 
     private void stop() {
-        currentFrame = 0L;
         clip.stop();
         clip.close();
     }
