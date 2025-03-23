@@ -3,6 +3,8 @@ package br.com.devcompleto;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class SimpleAudioPlayer {
@@ -24,6 +26,9 @@ public class SimpleAudioPlayer {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.out.println("My Music");
         filePath = "Enoque_001.wav";
+        long audioSize = Files.size(Path.of(filePath));
+
+        System.out.printf("Size: %.2f Mb. %n",  audioSize / 1024.0 / 1024 );
         SimpleAudioPlayer audioPlayer = new SimpleAudioPlayer();
 
         audioPlayer.play();
