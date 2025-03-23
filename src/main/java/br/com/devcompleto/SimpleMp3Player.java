@@ -3,10 +3,13 @@ package br.com.devcompleto;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
+import javax.sound.sampled.AudioFileFormat;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class SimpleMp3Player {
 
@@ -14,7 +17,11 @@ public class SimpleMp3Player {
         FileInputStream fis = null;
         try {
             String pathname = "Enoque_001.mp3";
-            fis = new FileInputStream(new File(pathname));
+            long audioSize = Files.size(Path.of(pathname));
+
+            System.out.printf("Size: %.2f Kb.",  audioSize / 1024.0 );
+            fis = new FileInputStream(pathname);
+
             BufferedInputStream bis = new BufferedInputStream(fis);
             Player player = new Player(bis);
             player.play();
