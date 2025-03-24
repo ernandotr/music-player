@@ -25,7 +25,7 @@ public class SimpleAudioPlayer {
 
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.out.println("My Music");
-        filePath = "Enoque_001.wav";
+        filePath = "Enoque_002.wav";
         long audioSize = Files.size(Path.of(filePath));
 
         System.out.printf("Size: %.2f Mb. %n",  audioSize / 1024.0 / 1024 );
