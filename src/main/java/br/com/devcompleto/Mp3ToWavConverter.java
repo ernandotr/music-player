@@ -4,8 +4,10 @@ import javazoom.jl.decoder.*;
 
 import javax.sound.sampled.*;
 import java.io.*;
+import java.util.logging.Logger;
 
 public class Mp3ToWavConverter {
+    private static final Logger logger =  Logger.getLogger("Mp3ToWavConverter");
 
     public static void main(String[] args) {
         String mp3FilePath = "Enoque_002.mp3";
@@ -13,9 +15,9 @@ public class Mp3ToWavConverter {
 
         try {
             convertMp3ToWav(mp3FilePath, wavFilePath);
-            System.out.println("Conversão concluída: " + wavFilePath);
+            logger.info("Converted successful: " + wavFilePath);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
         }
     }
 
@@ -46,26 +48,24 @@ public class Mp3ToWavConverter {
         }
     }
 
-    // Escreve um cabeçalho WAV simples
     private static void writeWavHeader(DataOutputStream out, AudioFormat format, int dataLength) throws IOException {
         out.writeBytes("RIFF");
         out.writeInt(36 + dataLength);
         out.writeBytes("WAVE");
 
         out.writeBytes("fmt ");
-        out.writeInt(16);  // Subchunk1Size (PCM)
-        out.writeShort((short) 1);  // AudioFormat (PCM)
-        out.writeShort((short) format.getChannels());  // NumChannels
-        out.writeInt((int) format.getSampleRate());  // SampleRate
-        out.writeInt((int) (format.getSampleRate() * format.getChannels() * format.getSampleSizeInBits() / 8));  // ByteRate
-        out.writeShort((short) (format.getChannels() * format.getSampleSizeInBits() / 8));  // BlockAlign
-        out.writeShort((short) format.getSampleSizeInBits());  // BitsPerSample
+        out.writeInt(16);
+        out.writeShort((short) 1);
+        out.writeShort((short) format.getChannels());
+        out.writeInt((int) format.getSampleRate());
+        out.writeInt((int) (format.getSampleRate() * format.getChannels() * format.getSampleSizeInBits() / 8));
+        out.writeShort((short) (format.getChannels() * format.getSampleSizeInBits() / 8));
+        out.writeShort((short) format.getSampleSizeInBits());
 
         out.writeBytes("data");
-        out.writeInt(dataLength);  // Data subchunk size
+        out.writeInt(dataLength);
     }
 
-    // Atualiza o cabeçalho WAV com o tamanho correto do arquivo
     private static void updateWavHeader(OutputStream wavStream) throws IOException {
         RandomAccessFile wavFile = new RandomAccessFile("Enoque_002.wav", "rw");
         wavFile.seek(4);
