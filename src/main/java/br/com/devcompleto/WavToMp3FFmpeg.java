@@ -1,8 +1,10 @@
 package br.com.devcompleto;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class WavToMp3FFmpeg {
+    private static Logger logger = Logger.getLogger("WavToMp3FFmpeg");
     public static void main(String[] args) {
         String wavFile = "Enoque_001.wav";
         String mp3File = "audio.mp3";
@@ -12,7 +14,7 @@ public class WavToMp3FFmpeg {
             process.waitFor();
             System.out.println("Conversão concluída: " + mp3File);
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
         }
     }
 }
