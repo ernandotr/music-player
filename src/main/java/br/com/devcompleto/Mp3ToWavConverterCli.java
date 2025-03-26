@@ -6,8 +6,8 @@ import javax.sound.sampled.*;
 import java.io.*;
 import java.util.logging.Logger;
 
-public class Mp3ToWavConverter {
-    private static final Logger logger =  Logger.getLogger("Mp3ToWavConverter");
+public class Mp3ToWavConverterCli {
+    private static final Logger logger =  Logger.getLogger("Mp3ToWavConverterCli");
 
     public static void main(String[] args) {
         String mp3FilePath = "Enoque_002.mp3";
