@@ -10,8 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-public class SimpleMp3Player {
-    private static final Logger logger = Logger.getLogger("SimpleMp3Player");
+public class SimpleMp3PlayerCli {
+    private static final Logger logger = Logger.getLogger("SimpleMp3PlayerCli");
 
     public static void main(String[] args) {
         FileInputStream fis;
