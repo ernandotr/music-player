@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class SimpleAudioPlayer {
+public class SimpleAudioPlayerCli {
 
     Long currentFrame;
     String status;
@@ -15,7 +15,7 @@ public class SimpleAudioPlayer {
     AudioInputStream audioInputStream;
     static String filePath;
 
-    public SimpleAudioPlayer() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+    public SimpleAudioPlayerCli() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
         clip = AudioSystem.getClip();
@@ -30,7 +30,7 @@ public class SimpleAudioPlayer {
 
         System.out.printf("Size: %.2f Mb. %n",  audioSize / 1024.0 / 1024 );
 
-        SimpleAudioPlayer audioPlayer = new SimpleAudioPlayer();
+        SimpleAudioPlayerCli audioPlayer = new SimpleAudioPlayerCli();
         double duration = audioPlayer.clip.getMicrosecondLength() / 1000000.0;
         System.out.printf("Size: %.3f Seconds. %n",  duration );
 
