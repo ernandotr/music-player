@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class SimpleMp3PlayerCli {
@@ -16,10 +17,15 @@ public class SimpleMp3PlayerCli {
     public static void main(String[] args) {
         FileInputStream fis;
         try {
-            String pathname = "Enoque_001.mp3";
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.println("|                Welcome to ER PLAYER !            |");
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.print("Enter the song path: ");
+            String pathname = scanner.nextLine();
             long audioSize = Files.size(Path.of(pathname));
 
-            System.out.printf("Size: %.2f Kb. %n",  audioSize / 1024.0 );
+            System.out.printf("Song size: %.2f Kb. %n",  audioSize / 1024.0 );
             fis = new FileInputStream(pathname);
 
             System.out.println();
@@ -27,6 +33,8 @@ public class SimpleMp3PlayerCli {
             BufferedInputStream bis = new BufferedInputStream(fis);
             Player player = new Player(bis);
             player.play();
+
+            logger.info(" Song ended. ");
 
         } catch (IOException | JavaLayerException e) {
             logger.severe(e.getMessage());
